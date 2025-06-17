@@ -1,26 +1,45 @@
+# 📦 Order Service
 
-![Screenshot 2025-06-17 054835](https://github.com/user-attachments/assets/c5b25eb0-ea5e-4d87-bdee-5b8a270a89ee)
-![Screenshot 2025-06-17 054827](https://github.com/user-attachments/assets/ea0f1460-cfaa-4d14-a725-a0c297b159bc)
-Order Service :
+The **Order Service** is responsible for processing customer orders and coordinating related operations across the eCommerce system. It publishes events to trigger actions in other services such as Payment and Notification.
 
-Handles customer orders and order-related communication.
+---
 
-Features : 
+## ✨ Features
 
-Create and fetch user orders.
+- 📝 **Create Orders**:
+  - Accepts user email and product items.
+- 🔍 **Fetch User Orders**:
+  - Retrieve all orders for a specific user.
+- 📤 **Emit `order.created` Events**:
+  - Publishes order events via RabbitMQ for downstream services.
+- 🧾 **Order DTO Mapping**:
+  - Includes ordered items and timestamps.
+- 🔗 **Integration**:
+  - Initiates Payment Service.
+  - Sends user notifications via Notification Service.
 
-Emits order.created events via RabbitMQ.
+---
 
-Maps order DTOs with items and timestamps.
+## 🛠 Tech Stack
 
-Calls the Payment Service and sends message to Notification.
+- **Java 17**
+- **Spring Boot**
+- **Spring Data JPA** (SQL Server)
+- **RabbitMQ** (event publishing)
+- **ModelMapper**
+- **Spring Cache**
 
-Tech Stack :
+---
 
-Java 17, Spring Boot
+## 📁 Project Structure (Simplified)
 
-Spring Data JPA (SQL Server)
-
-RabbitMQ (event publishing)
-
-ModelMapper, Caching with Spring
+```plaintext
+order-service/
+├── controller/
+├── dto/
+├── entity/
+├── repository/
+├── service/
+├── messaging/          # Event publishing logic
+├── config/
+└── OrderServiceApplication.java
